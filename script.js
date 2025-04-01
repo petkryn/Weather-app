@@ -2,6 +2,7 @@ const input = document.querySelector(".input");
 const btn = document.querySelector(".btn");
 const url = "https://api.weatherapi.com/v1/current.json";
 const mainWeatherInfo = document.querySelector(".main__weather__info");
+const btnWeek = document.querySelector(".btn__week");
 const key = "33e53c5f75d247f69fc135030251803";
 
 btn.addEventListener("click", () => {
