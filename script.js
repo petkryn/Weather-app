@@ -6,8 +6,6 @@ const btnWeek = document.querySelector(".btn__week");
 const urlDay = "https://api.weatherapi.com/v1/current.json";
 const keyDay = "33e53c5f75d247f69fc135030251803";
 
-// const urlWeek =
-//   "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Lviv/2025-04-29/2025-05-04?unitGroup=metric&include=days";
 const keyWeek = "95YUCEXKBE9VZZ6Y7EQWNEZXK";
 
 btnDay.addEventListener("click", () => {
@@ -27,24 +25,6 @@ btnDay.addEventListener("click", () => {
       );
   }
 });
-
-// btnWeek.addEventListener("click", () => {
-//   if (input.value) {
-//     fetch(`${urlWeek}&key=${keyWeek}`)
-//       .then((response) => response.json())
-//       .then((data) => {
-//         if (data.error) {
-//           throw new Error(data.error.message);
-//         }
-//         mainWeatherInfo.innerHTML = "";
-//         mainWeatherInfo.append(createTask(data));
-//       })
-//       .catch(
-//         (error) =>
-//           (mainWeatherInfo.innerHTML = `<p class="error__style">${error.message}</p>`)
-//       );
-//   }
-// });
 
 function createTask(data) {
   const div = document.createElement("div");
