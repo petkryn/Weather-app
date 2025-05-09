@@ -222,17 +222,20 @@ body {
 
 .week__weather {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 10px;
-
   height: 350px;
   overflow-y: scroll;
   border: 1px solid #ccc;
+  border-radius: 10px;
   padding: 10px;
 }
 
 .main__card__info {
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 250px;
 }
 
 .main__card__info h3 {
@@ -250,6 +253,11 @@ body {
   color: black;
   font-size: 14px;
   font-weight: bold;
+}
+
+.main__card__info img {
+  width: 40px;
+  height: 40px;
 }
 
 @media (max-width: 1150px) {
@@ -648,5 +656,24 @@ body {
     border: 2px solid red;
     padding: 8px 12px;
     line-height: 32px;
+  }
+
+  .week__weather {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 475px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .main__card__info {
+    margin-top: 10px;
+    width: 250px;
+    height: 200px;
   }
 }

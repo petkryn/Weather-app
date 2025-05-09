@@ -78,9 +78,10 @@ function createWeekTask(data) {
     div.innerHTML = `
       <article class="main__card__info">
         <h3>${day.datetime}</h3>
-        <p><span>City:</span> ${day.city}</p>
+        <p><span>City:</span> ${data.address}</p>
         <p><span>Temperature:</span> ${day.temp}°C</p>
         <p><span>Weather:</span> ${day.conditions}</p>
+        <img src="img/${day.icon}.svg" alt="">
       </article>
     `;
     container.appendChild(div);
