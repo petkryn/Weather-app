@@ -2,27 +2,34 @@ const input = document.querySelector(".input");
 const btnDay = document.querySelector(".btn");
 const mainWeatherInfo = document.querySelector(".main__weather__info");
 const btnWeek = document.querySelector(".btn__week");
+const loader = document.querySelector(".loader");
 
 const urlDay = "https://api.weatherapi.com/v1/current.json";
+const urlWeek =
+  "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline";
 const keyDay = "33e53c5f75d247f69fc135030251803";
 
 const keyWeek = "95YUCEXKBE9VZZ6Y7EQWNEZXK";
 
 btnDay.addEventListener("click", () => {
+  loader.style.display = "block";
   if (input.value) {
     fetch(`${urlDay}?q=${input.value}&key=${keyDay}`)
       .then((response) => response.json())
       .then((data) => {
+        loader.style.display = "none";
         if (data.error) {
           throw new Error(data.error.message);
         }
         mainWeatherInfo.innerHTML = "";
         mainWeatherInfo.append(createTask(data));
       })
-      .catch(
-        (error) =>
-          (mainWeatherInfo.innerHTML = `<p class="error__style">${error.message}</p>`)
-      );
+      .catch((error) => {
+        loader.style.display = "none";
+        mainWeatherInfo.innerHTML = `<p class="error__style">${error.message}</p>`;
+      });
+  } else {
+    loader.style.display = "none";
   }
 });
 
@@ -47,14 +54,29 @@ function createTask(data) {
 }
 
 btnWeek.addEventListener("click", () => {
+  loader.style.display = "block";
   if (input.value) {
-    const startDate = "2025-04-29";
-    const endDate = "2025-05-04";
-    const urlWeek = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${input.value}/${startDate}/${endDate}?unitGroup=metric&include=days&key=${keyWeek}&contentType=json`;
+    const today = new Date();
+    const end = new Date();
+    end.setDate(today.getDate() + 6);
 
-    fetch(urlWeek)
+    const formatDate = (date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    };
+
+    const startDate = formatDate(today);
+    const endDate = formatDate(end);
+
+    loader.style.display = "block";
+    fetch(
+      `${urlWeek}/${input.value}/${startDate}/${endDate}?unitGroup=metric&include=days&key=${keyWeek}&contentType=json`
+    )
       .then((response) => response.json())
       .then((data) => {
+        loader.style.display = "none";
         if (data.error) {
           throw new Error(data.error.message);
         }
@@ -62,9 +84,12 @@ btnWeek.addEventListener("click", () => {
         mainWeatherInfo.append(createWeekTask(data));
       })
       .catch((error) => {
+        loader.style.display = "none";
         console.error("Fetch error:", error);
         mainWeatherInfo.innerHTML = `<p class="error__style">${error.message}</p>`;
       });
+  } else {
+    loader.style.display = "none";
   }
 });
 
@@ -76,12 +101,12 @@ function createWeekTask(data) {
     const div = document.createElement("div");
     div.classList.add("main__card");
     div.innerHTML = `
-      <article class="main__card__info">
+      <article class="main__card__week">
         <h3>${day.datetime}</h3>
         <p><span>City:</span> ${data.address}</p>
         <p><span>Temperature:</span> ${day.temp}°C</p>
         <p><span>Weather:</span> ${day.conditions}</p>
-        <img src="img/${day.icon}.svg" alt="">
+        <img class="week_img" src="img/${day.icon}.svg" alt="icon-weather">
       </article>
     `;
     container.appendChild(div);

@@ -95,6 +95,21 @@ body {
   padding: 0 15px;
 }
 
+.loader {
+  display: none;
+}
+
+.imgGif {
+  width: 200px;
+  height: 200px;
+}
+
+.text__loader {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .main__title {
   color: white;
   font-size: 65px;
@@ -110,7 +125,7 @@ body {
   align-items: center;
   gap: 50px;
   padding-left: 310px;
-  padding-bottom: 80px;
+  padding-bottom: 110px;
 }
 
 .input {
@@ -158,6 +173,7 @@ body {
 
 .main__card__info {
   width: 250px;
+  height: 330px;
   background-color: white;
   padding: 30px;
   border-radius: 10px;
@@ -224,40 +240,45 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 350px;
-  overflow-y: scroll;
+  height: 300px;
+  overflow-y: auto;
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 10px;
 }
 
-.main__card__info {
+.main__card__week {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 250px;
   height: 250px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 8px 12px 10px rgba(167, 156, 156, 0.3);
 }
 
-.main__card__info h3 {
+.main__card__week h3 {
   color: black;
   font-size: 18px;
   font-weight: bold;
   padding-bottom: 10px;
 }
 
-.main__card__info p {
+.main__card__week p {
   color: darkslategray;
 }
 
-.main__card__info span {
+.main__card__week span {
   color: black;
   font-size: 14px;
   font-weight: bold;
 }
 
-.main__card__info img {
-  width: 40px;
-  height: 40px;
+.week_img {
+  width: 60px;
+  height: 60px;
 }
 
 @media (max-width: 1150px) {
@@ -267,7 +288,6 @@ body {
 
   .main__content {
     padding-left: 200px;
-    padding-bottom: 70px;
   }
 
   .btn {
@@ -335,7 +355,7 @@ body {
 
   .main__content {
     padding-left: 150px;
-    padding-bottom: 65px;
+    padding-bottom: 125;
   }
 
   .btn {
@@ -404,7 +424,6 @@ body {
 
   .main__content {
     padding-left: 120px;
-    padding-bottom: 60px;
     gap: 25px;
   }
 
@@ -500,7 +519,6 @@ body {
 
   .main__content {
     padding-left: 100px;
-    padding-bottom: 50px;
     gap: 20px;
   }
 
@@ -527,7 +545,6 @@ body {
 
   .main__content {
     padding-left: 80px;
-    padding-bottom: 40px;
   }
 
   .btn {
@@ -598,7 +615,6 @@ body {
 
   .main__content {
     padding-left: 60px;
-    padding-bottom: 35px;
     gap: 15px;
   }
 
@@ -633,6 +649,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding-left: 60px;
+    padding-bottom: 50px;
     gap: 15px;
   }
 
@@ -663,9 +680,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    height: 475px;
-    overflow-y: scroll;
+    height: 450px;
+    overflow-y: auto;
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 10px;
@@ -674,6 +690,10 @@ body {
   .main__card__info {
     margin-top: 10px;
     width: 250px;
-    height: 200px;
+    max-height: 300px;
+  }
+
+  .card__temperature__info {
+    font-size: 35px;
   }
 }
