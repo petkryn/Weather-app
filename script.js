@@ -14,6 +14,7 @@ const keyWeek = "95YUCEXKBE9VZZ6Y7EQWNEZXK";
 btnDay.addEventListener("click", () => {
   loader.style.display = "block";
   if (input.value) {
+    mainWeatherInfo.innerHTML = "";
     fetch(`${urlDay}?q=${input.value}&key=${keyDay}`)
       .then((response) => response.json())
       .then((data) => {
@@ -21,12 +22,12 @@ btnDay.addEventListener("click", () => {
         if (data.error) {
           throw new Error(data.error.message);
         }
-        mainWeatherInfo.innerHTML = "";
+
         mainWeatherInfo.append(createTask(data));
       })
       .catch((error) => {
         loader.style.display = "none";
-        mainWeatherInfo.innerHTML = `<p class="error__style">${error.message}</p>`;
+        mainWeatherInfo.innerHTML = `<p class="error__style">This locality was not found</p>`;
       });
   } else {
     loader.style.display = "none";
@@ -56,6 +57,7 @@ function createTask(data) {
 btnWeek.addEventListener("click", () => {
   loader.style.display = "block";
   if (input.value) {
+    mainWeatherInfo.innerHTML = "";
     const today = new Date();
     const end = new Date();
     end.setDate(today.getDate() + 6);
@@ -80,13 +82,13 @@ btnWeek.addEventListener("click", () => {
         if (data.error) {
           throw new Error(data.error.message);
         }
-        mainWeatherInfo.innerHTML = "";
+
         mainWeatherInfo.append(createWeekTask(data));
       })
       .catch((error) => {
         loader.style.display = "none";
         console.error("Fetch error:", error);
-        mainWeatherInfo.innerHTML = `<p class="error__style">${error.message}</p>`;
+        mainWeatherInfo.innerHTML = `<p class="error__style">This locality was not found</p>`;
       });
   } else {
     loader.style.display = "none";
