@@ -98,6 +98,8 @@ body {
 
 .loader {
   display: none;
+  position: relative;
+  left: 500px;
 }
 
 .imgGif {
