@@ -98,8 +98,11 @@ body {
 
 .loader {
   display: none;
-  position: relative;
-  left: 500px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 30px;
 }
 
 .imgGif {
@@ -109,7 +112,7 @@ body {
 
 .text__loader {
   color: white;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
 }
 

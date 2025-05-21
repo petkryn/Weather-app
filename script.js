@@ -12,7 +12,10 @@ const keyDay = "33e53c5f75d247f69fc135030251803";
 const keyWeek = "95YUCEXKBE9VZZ6Y7EQWNEZXK";
 
 btnDay.addEventListener("click", () => {
-  loader.style.display = "block";
+  loader.style.display = "flex";
+  if (!input.value) {
+    mainWeatherInfo.innerHTML = `<p class="error__style">Please enter the location</p>`;
+  }
   if (input.value) {
     mainWeatherInfo.innerHTML = "";
     fetch(`${urlDay}?q=${input.value}&key=${keyDay}`)
@@ -55,7 +58,10 @@ function createTask(data) {
 }
 
 btnWeek.addEventListener("click", () => {
-  loader.style.display = "block";
+  loader.style.display = "flex";
+  if (!input.value) {
+    mainWeatherInfo.innerHTML = `<p class="error__style">Please enter the location</p>`;
+  }
   if (input.value) {
     mainWeatherInfo.innerHTML = "";
     const today = new Date();
@@ -72,7 +78,7 @@ btnWeek.addEventListener("click", () => {
     const startDate = formatDate(today);
     const endDate = formatDate(end);
 
-    loader.style.display = "block";
+    loader.style.display = "flex";
     fetch(
       `${urlWeek}/${input.value}/${startDate}/${endDate}?unitGroup=metric&include=days&key=${keyWeek}&contentType=json`
     )
