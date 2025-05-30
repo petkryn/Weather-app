@@ -58,19 +58,7 @@ btnWeek.addEventListener("click", () => {
   if (input.value) {
     loader.style.display = "flex";
     mainWeatherInfo.innerHTML = "";
-    const today = new Date();
-    const end = new Date();
-    end.setDate(today.getDate() + 6);
-
-    const formatDate = (date) => {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    };
-
-    const startDate = formatDate(today);
-    const endDate = formatDate(end);
+    const { startDate, endDate } = formatDates();
 
     fetch(
       `${urlWeek}/${input.value}/${startDate}/${endDate}?unitGroup=metric&include=days&key=${keyWeek}&contentType=json`
@@ -114,4 +102,21 @@ function createWeekTask(data) {
   });
 
   return container;
+}
+
+function formatDates() {
+  const today = new Date();
+  const end = new Date();
+  end.setDate(today.getDate() + 6);
+
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const startDate = formatDate(today);
+  const endDate = formatDate(end);
+  return { startDate, endDate };
 }
