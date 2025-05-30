@@ -56,6 +56,8 @@ function createTask(data) {
 
 btnWeek.addEventListener("click", () => {
   if (input.value) {
+    loader.style.display = "flex";
+    mainWeatherInfo.innerHTML = "";
     const { startDate, endDate } = formatDates();
 
     fetch(
@@ -103,8 +105,6 @@ function createWeekTask(data) {
 }
 
 function formatDates() {
-  loader.style.display = "flex";
-  mainWeatherInfo.innerHTML = "";
   const today = new Date();
   const end = new Date();
   end.setDate(today.getDate() + 6);
